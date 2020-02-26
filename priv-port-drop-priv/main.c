@@ -44,6 +44,18 @@ int main(int argc, const char *argv[])
         abort();
     }
 
+    if (getuid() == 0) {
+        printf("We are root, let's drop privs\n");
+        if (setgid(65534) != 0) {
+            perror("Failed to set group to nobody");
+            abort();
+        }
+        if (setuid(65534) != 0) {
+            perror("Failed to set uid to nobody");
+            abort();
+        }
+    }
+
     printf("Waiting for connection...\n");
     struct sockaddr_in cli_addr = { 0 };
     socklen_t cli_addr_len = sizeof(cli_addr);

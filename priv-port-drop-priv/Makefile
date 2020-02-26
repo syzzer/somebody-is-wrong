@@ -1,3 +1,5 @@
 .PHONY: all
-all:
-	gcc -Wall -Werror -o main main.c
+all: main
+
+main: main.c
+	$(CC) -Wall -Werror -o main main.c

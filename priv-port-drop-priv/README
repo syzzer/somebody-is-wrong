@@ -1,0 +1,8 @@
+Somebody on the Internet said "you can't read from a socket listening on a
+privileged port after dropping privileges". Yes you can.
+
+$ make
+$ sudo ./main 42
+
+(Other terminal:)
+$ echo "https://xkcd.com/386/" | nc -w0 localhost 42
